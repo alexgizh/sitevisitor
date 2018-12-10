@@ -40,6 +40,11 @@
     [self performSegueWithIdentifier:@"showCamera" sender:nil];
 }
 
+- (IBAction)uploadPhotos:(id)sender
+{
+// Upload Photos
+}
+
 #pragma mark - Collection view data source
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
