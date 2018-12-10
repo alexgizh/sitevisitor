@@ -12,11 +12,14 @@
 #import "TagViewController.h"
 #import "AppDelegate.h"
 #import "APIClient.h"
+#import "MBProgressHUD.h"
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 {
     IBOutlet __weak UICollectionView *photosView;
     IBOutlet __weak UIImageView *backgroundImage;
+    int notUploadedCounter;
+    MBProgressHUD *hud;
 }
 @end
 
@@ -35,6 +38,10 @@
 {
     [super viewWillAppear:animated];
     [photosView reloadData];
+    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
+    hud.label.text = @"Uploading ";
+    hud.hidden = YES;
 }
 
 - (IBAction)addPhotos:(id)sender
@@ -52,7 +59,11 @@
     UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                handler:^(UIAlertAction * action){
                                                    UITextField *textField = alert.textFields[0];
-                                                   [self uploadPhotosWith:textField.text];
+                                                   dispatch_async(dispatch_get_main_queue(), ^{
+                                                       self->hud.hidden = NO;
+                                                       [self calculateStartIndex];
+                                                       [self uploadPhotosWith:textField.text];
+                                                   });
                                                }];
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                        [alert dismissViewControllerAnimated:YES completion:nil];
@@ -71,15 +82,42 @@
 }
 
 - (void)uploadPhotosWith:(NSString *)propertyUnitID {
-    if (_sitePhotos.count > 0) {
-        SitePhoto *sitePhoto = [_sitePhotos objectAtIndex:0];
-        
-        [[APIClient sharedClient] uploadImage:sitePhoto.photo path:[NSString stringWithFormat:@"dimensions/feature/f2/ws/property-units/%@/documents", propertyUnitID] params:@{@"file" : @""} success:^(id responseObject) {
-            
-        } failure:^(NSError *error) {
-            
-        }];
+    static int counter = 0;
+    static int photosUploaded = 0;
+    if (_sitePhotos.count > counter) {
+        SitePhoto *sitePhoto = [_sitePhotos objectAtIndex:counter];
+        counter += 1;
+        if (!sitePhoto.isUploaded) {
+            [[APIClient sharedClient] uploadImage:sitePhoto.photo path:[NSString stringWithFormat:@"dimensions/feature/f2/ws/property-units/%@/documents", propertyUnitID] params:@{@"file" : @""} success:^(id responseObject) {
+                photosUploaded += 1;
+                sitePhoto.isUploaded = YES;
+                [self uploadPhotosWith:propertyUnitID];
+                self->hud.label.text = [NSString stringWithFormat:@"Uploading %d of %d", photosUploaded, self->notUploadedCounter];
+            } failure:^(NSError *error) {
+                NSLog(@"Image Not uploaded %@", error.localizedDescription);
+            }];
+        } else {
+            [self uploadPhotosWith:propertyUnitID];
+        }
+    } else {
+        counter = 0;
+        [self reloadCollectionView];
     }
+}
+
+- (int)calculateStartIndex {
+    notUploadedCounter = 0;
+    for (SitePhoto *sitePhoto in _sitePhotos) {
+        notUploadedCounter += sitePhoto.isUploaded ? 0 : 1;
+    }
+    return notUploadedCounter;
+}
+
+- (void)reloadCollectionView {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self->photosView reloadData];
+        self->hud.hidden = YES;
+    });
 }
 
 #pragma mark - Collection view data source

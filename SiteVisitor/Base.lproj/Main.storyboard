@@ -161,14 +161,23 @@
                                                         <constraint firstAttribute="height" constant="40" id="oPX-vV-m97"/>
                                                     </constraints>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w9U-pu-nvV">
+                                                    <rect key="frame" x="58" y="2" width="20" height="20"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="20" id="35z-sO-6RN"/>
+                                                        <constraint firstAttribute="width" constant="20" id="VR1-q9-Tqs"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                         </view>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="frw-Wu-x9T" secondAttribute="bottom" constant="2" id="7dE-aM-zYv"/>
+                                            <constraint firstAttribute="trailing" secondItem="w9U-pu-nvV" secondAttribute="trailing" constant="2" id="Dpm-bt-7cf"/>
                                             <constraint firstItem="wq7-be-F91" firstAttribute="height" secondItem="frw-Wu-x9T" secondAttribute="height" id="IFU-1p-1Bb"/>
                                             <constraint firstItem="wq7-be-F91" firstAttribute="top" secondItem="frw-Wu-x9T" secondAttribute="top" id="JCo-TO-4Rx"/>
                                             <constraint firstItem="wq7-be-F91" firstAttribute="width" secondItem="frw-Wu-x9T" secondAttribute="width" id="MTk-rc-rn2"/>
+                                            <constraint firstItem="w9U-pu-nvV" firstAttribute="top" secondItem="3e3-eS-aLo" secondAttribute="top" constant="2" id="McD-Q0-Fle"/>
                                             <constraint firstItem="wq7-be-F91" firstAttribute="leading" secondItem="frw-Wu-x9T" secondAttribute="leading" id="YW0-Hk-C4k"/>
                                             <constraint firstAttribute="trailing" secondItem="frw-Wu-x9T" secondAttribute="trailing" constant="2" id="szu-SH-bxM"/>
                                         </constraints>
@@ -177,6 +186,7 @@
                                             <outlet property="selectionView" destination="xZj-Bf-vus" id="s6h-9f-GyD"/>
                                             <outlet property="tagContainer" destination="wq7-be-F91" id="ode-YW-sxk"/>
                                             <outlet property="tagImage" destination="frw-Wu-x9T" id="UGM-ZE-ql3"/>
+                                            <outlet property="uploadedImage" destination="w9U-pu-nvV" id="7bM-8o-K8n"/>
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="NoPhotosCell" id="VgM-Rb-gjc">

@@ -55,6 +55,7 @@
         SitePhoto *sitePhoto = [SitePhoto new];
         sitePhoto.tag = nil;
         sitePhoto.photo = image;
+        sitePhoto.isUploaded = NO;
         [array addObject:sitePhoto];
     }
     photos = array;

@@ -12,6 +12,7 @@
 {
     IBOutlet __weak UIView *selectionView;
     IBOutlet __weak UIImageView *tagImage;
+    IBOutlet __weak UIImageView *uploadedImage;
     IBOutlet __weak UIView *tagContainer;
 }
 @end
@@ -28,6 +29,7 @@
     _photoView.image = sitePhoto.photo;
     tagContainer.backgroundColor = sitePhoto.tag.color;
     tagImage.image = [UIImage imageNamed:sitePhoto.tag.name];
+    uploadedImage.image = sitePhoto.isUploaded ? [UIImage imageNamed:@"Checkmark"] : nil;
 }
 
 @end

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIImage *photo;
 @property (nonatomic, strong, nullable) Tag *tag;
+@property (nonatomic, assign) BOOL isUploaded;
 
 @end
 
