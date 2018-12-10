@@ -1,0 +1,6 @@
+framework module Pods_SiteVisitor {
+  umbrella header "Pods-SiteVisitor-umbrella.h"
+
+  export *
+  module * { export * }
+}

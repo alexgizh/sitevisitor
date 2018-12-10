@@ -80,6 +80,7 @@
 		65E9508D219646E400EBAE73 /* FastttCapturedImage+Process.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E95084219646E300EBAE73 /* FastttCapturedImage+Process.m */; };
 		65E9508E219646E400EBAE73 /* FastttZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E95085219646E300EBAE73 /* FastttZoom.m */; };
 		65FF0713219F107600E2861D /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF0712219F107600E2861D /* TagViewController.m */; };
+		B0D98160BF99AEB8D5392A69 /* Pods_SiteVisitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC000B046C8B55CDD5D026 /* Pods_SiteVisitor.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,6 +210,9 @@
 		65E95085219646E300EBAE73 /* FastttZoom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastttZoom.m; sourceTree = "<group>"; };
 		65FF0711219F107600E2861D /* TagViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
 		65FF0712219F107600E2861D /* TagViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagViewController.m; sourceTree = "<group>"; };
+		6AAC000B046C8B55CDD5D026 /* Pods_SiteVisitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SiteVisitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D9B74FECBFBD01EF151FBDD /* Pods-SiteVisitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiteVisitor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SiteVisitor/Pods-SiteVisitor.debug.xcconfig"; sourceTree = "<group>"; };
+		BFE56EE21EDEFDF963E8DDA0 /* Pods-SiteVisitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiteVisitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-SiteVisitor/Pods-SiteVisitor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -216,6 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B0D98160BF99AEB8D5392A69 /* Pods_SiteVisitor.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +275,8 @@
 			children = (
 				65BB5ED4219595760006D664 /* SiteVisitor */,
 				65BB5ED3219595760006D664 /* Products */,
+				A09053D43911F0329E35B106 /* Pods */,
+				70A5AC1220639C6C9C999F91 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -473,6 +480,23 @@
 			path = FastttCamera;
 			sourceTree = "<group>";
 		};
+		70A5AC1220639C6C9C999F91 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6AAC000B046C8B55CDD5D026 /* Pods_SiteVisitor.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A09053D43911F0329E35B106 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9D9B74FECBFBD01EF151FBDD /* Pods-SiteVisitor.debug.xcconfig */,
+				BFE56EE21EDEFDF963E8DDA0 /* Pods-SiteVisitor.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -480,9 +504,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 65BB5EE8219595770006D664 /* Build configuration list for PBXNativeTarget "SiteVisitor" */;
 			buildPhases = (
+				4A40DE729A81C97E24981112 /* [CP] Check Pods Manifest.lock */,
 				65BB5ECE219595760006D664 /* Sources */,
 				65BB5ECF219595760006D664 /* Frameworks */,
 				65BB5ED0219595760006D664 /* Resources */,
+				45C878ECC78315BE5BCCEE1F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -560,6 +586,57 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		45C878ECC78315BE5BCCEE1F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-SiteVisitor/Pods-SiteVisitor-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/MBCircularProgressBar/MBCircularProgressBar.framework",
+				"${BUILT_PRODUCTS_DIR}/Reachability/Reachability.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBCircularProgressBar.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SiteVisitor/Pods-SiteVisitor-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4A40DE729A81C97E24981112 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SiteVisitor-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		65BB5ECE219595760006D664 /* Sources */ = {
@@ -766,6 +843,7 @@
 		};
 		65BB5EE9219595770006D664 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9D9B74FECBFBD01EF151FBDD /* Pods-SiteVisitor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -784,6 +862,7 @@
 		};
 		65BB5EEA219595770006D664 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BFE56EE21EDEFDF963E8DDA0 /* Pods-SiteVisitor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";

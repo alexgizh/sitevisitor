@@ -1,0 +1,8 @@
+target ‘SiteVisitor’ do
+    use_frameworks!
+
+   pod 'Reachability'
+   pod 'AFNetworking', '~> 3.0'
+   pod 'MBCircularProgressBar'
+
+end
