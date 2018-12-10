@@ -1,0 +1,39 @@
+"Access Denied" = "Access Denied";
+
+"Back" = "Back";
+
+"Cancel" = "Cancel";
+
+"Confirm" = "Confirm";
+
+"Done" = "Done";
+
+"Flash Auto" = "Flash Auto";
+
+"Flash Off" = "Flash Off";
+
+"Flash On" = "Flash On";
+
+"No Photos or Videos" = "No Photos or Videos";
+
+"OK" = "OK";
+
+"Photos" = "Photos";
+
+"Retake" = "Retake";
+
+"Selected: %@/%@" = "Selected: %@/%@";
+
+"Selected: %@" = "Selected: %@";
+
+"Take Photos" = "Take Photos";
+
+"This app does not have access to your photos or videos." = "This app does not have access to your photos or videos.";
+
+"You can enable access in \"Settings\" -> \"Privacy\" -> \"Camera\"." = "You can enable access in \"Settings\" -> \"Privacy\" -> \"Camera\".";
+
+"You can enable access in \"Settings\" -> \"Privacy\" -> \"Photos\"." = "You can enable access in \"Settings\" -> \"Privacy\" -> \"Photos\".";
+
+"You can sync photos and videos onto your %@ using iTunes." = "You can sync photos and videos onto your %@ using iTunes.";
+
+"You can take photos and videos using the camera, or sync photos and videos onto your %@\nusing iTunes." = "You can take photos and videos using the camera, or sync photos and videos onto your %@\nusing iTunes.";
