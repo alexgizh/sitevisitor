@@ -44,30 +44,44 @@
 
 - (IBAction)uploadPhotos:(id)sender
 {
-    SitePhoto *sitePhoto = [_sitePhotos objectAtIndex:0];
+    UIAlertController *alert= [UIAlertController
+                               alertControllerWithTitle:@"Please enter Property unit ID"
+                               message:nil
+                               preferredStyle:UIAlertControllerStyleAlert];
     
-    [[APIClient sharedClient] uploadImage:sitePhoto.photo path:@"dimensions/feature/f2/ws/property-units/101-121" params:@{@"file" : @""} success:^(id responseObject) {
-        
-    } failure:^(NSError *error) {
-        
+    UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                               handler:^(UIAlertAction * action){
+                                                   UITextField *textField = alert.textFields[0];
+                                                   [self uploadPhotoWith:textField.text];
+                                               }];
+    UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+                                                       [alert dismissViewControllerAnimated:YES completion:nil];
+                                                   }];
+    
+    [alert addAction:ok];
+    [alert addAction:cancel];
+    
+    [alert addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Property Unit ID";
+        textField.text = @"101-121";
+        textField.keyboardType = UIKeyboardTypeDefault;
     }];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)getUserToken {
-    [[APIClient sharedClient] getWithPath:@"dimensions/feature/f2/ws/property-units/121" params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-        NSError *error = nil;
-        id json = [NSJSONSerialization JSONObjectWithData: responseObject options: NSJSONReadingMutableContainers error: &error];
-        if (json) {
-            NSLog(@"response = %@", json);
-        } else {
-            // Show error getting Token
-        }
+- (void)uploadPhotoWith:(NSString *)propertyUnitID {
+    if (_sitePhotos.count > 0) {
+        SitePhoto *sitePhoto = [_sitePhotos objectAtIndex:0];
         
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        
-    }];
-
+        [[APIClient sharedClient] uploadImage:sitePhoto.photo path:[NSString stringWithFormat:@"dimensions/feature/f2/ws/property-units/%@", propertyUnitID] params:@{@"file" : @""} success:^(id responseObject) {
+            
+        } failure:^(NSError *error) {
+            
+        }];
+    }
 }
+
 #pragma mark - Collection view data source
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
