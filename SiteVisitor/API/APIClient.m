@@ -34,9 +34,8 @@
 
     [self.requestSerializer setValue:@"Basic cnN0b2pjaGU6UmlzdGFraTE5Ng==" forHTTPHeaderField:@"Authorization"];
 
-    [self.requestSerializer setValue:@"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZDEtdGVjaCIsImV4cCI6NDEwMjM1NDgwMCwianRpIjoiNiJ9.p9H3Va58fYb4cZfbNxJ_Kgbuh73Zrc4dewUsnxmT9uPKOTa_YmC5VOyIDaxQNWQIqto9XwAf4qX7cmXtfSIrog" forHTTPHeaderField:@"JwtAuthorization"];
+    [self.requestSerializer setValue:@"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZDEtdGVjaCIsImV4cCI6NDEwMjM1NDgwMCwianRpIjoiNiJ9.p9H3Va58fYb4cZfbNxJ_Kgbuh73Zrc4dewUsnxmT9uPKOTa_YmC5VOyIDaxQNWQIqto9XwAf4qX7cmXtfSIrog" forHTTPHeaderField:@"JwtAuthorization"];
     
-
     return self;
 }
 

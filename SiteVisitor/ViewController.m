@@ -52,7 +52,7 @@
     UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
                                                handler:^(UIAlertAction * action){
                                                    UITextField *textField = alert.textFields[0];
-                                                   [self uploadPhotoWith:textField.text];
+                                                   [self uploadPhotosWith:textField.text];
                                                }];
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
                                                        [alert dismissViewControllerAnimated:YES completion:nil];
@@ -70,11 +70,11 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)uploadPhotoWith:(NSString *)propertyUnitID {
+- (void)uploadPhotosWith:(NSString *)propertyUnitID {
     if (_sitePhotos.count > 0) {
         SitePhoto *sitePhoto = [_sitePhotos objectAtIndex:0];
         
-        [[APIClient sharedClient] uploadImage:sitePhoto.photo path:[NSString stringWithFormat:@"dimensions/feature/f2/ws/property-units/%@", propertyUnitID] params:@{@"file" : @""} success:^(id responseObject) {
+        [[APIClient sharedClient] uploadImage:sitePhoto.photo path:[NSString stringWithFormat:@"dimensions/feature/f2/ws/property-units/%@/documents", propertyUnitID] params:@{@"file" : @""} success:^(id responseObject) {
             
         } failure:^(NSError *error) {
             
