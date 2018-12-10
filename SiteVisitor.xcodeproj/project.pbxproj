@@ -80,6 +80,7 @@
 		65E9508D219646E400EBAE73 /* FastttCapturedImage+Process.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E95084219646E300EBAE73 /* FastttCapturedImage+Process.m */; };
 		65E9508E219646E400EBAE73 /* FastttZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E95085219646E300EBAE73 /* FastttZoom.m */; };
 		65FF0713219F107600E2861D /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF0712219F107600E2861D /* TagViewController.m */; };
+		6DEF42F221BE7092001AC61C /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEF42F021BE7091001AC61C /* APIClient.m */; };
 		B0D98160BF99AEB8D5392A69 /* Pods_SiteVisitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC000B046C8B55CDD5D026 /* Pods_SiteVisitor.framework */; };
 /* End PBXBuildFile section */
 
@@ -211,6 +212,8 @@
 		65FF0711219F107600E2861D /* TagViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TagViewController.h; sourceTree = "<group>"; };
 		65FF0712219F107600E2861D /* TagViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TagViewController.m; sourceTree = "<group>"; };
 		6AAC000B046C8B55CDD5D026 /* Pods_SiteVisitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SiteVisitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6DEF42EE21BE7091001AC61C /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
+		6DEF42F021BE7091001AC61C /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		9D9B74FECBFBD01EF151FBDD /* Pods-SiteVisitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiteVisitor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SiteVisitor/Pods-SiteVisitor.debug.xcconfig"; sourceTree = "<group>"; };
 		BFE56EE21EDEFDF963E8DDA0 /* Pods-SiteVisitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiteVisitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-SiteVisitor/Pods-SiteVisitor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -291,6 +294,7 @@
 		65BB5ED4219595760006D664 /* SiteVisitor */ = {
 			isa = PBXGroup;
 			children = (
+				6DEF42EC21BE7091001AC61C /* API */,
 				65BA72FE21A40A3200A4018D /* ImageZoomViewer */,
 				65E9500F2196466200EBAE73 /* BUKImagePickerController */,
 				65BB5F102195C5BA0006D664 /* Model */,
@@ -478,6 +482,15 @@
 				65E95085219646E300EBAE73 /* FastttZoom.m */,
 			);
 			path = FastttCamera;
+			sourceTree = "<group>";
+		};
+		6DEF42EC21BE7091001AC61C /* API */ = {
+			isa = PBXGroup;
+			children = (
+				6DEF42EE21BE7091001AC61C /* APIClient.h */,
+				6DEF42F021BE7091001AC61C /* APIClient.m */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		70A5AC1220639C6C9C999F91 /* Frameworks */ = {
@@ -668,6 +681,7 @@
 				65BB5F0D2195C3800006D664 /* TagsControl.m in Sources */,
 				65E950582196466200EBAE73 /* BUKCameraViewController.m in Sources */,
 				65E9505F2196466200EBAE73 /* BUKPlaceholderView.m in Sources */,
+				6DEF42F221BE7092001AC61C /* APIClient.m in Sources */,
 				65BB5F082195C2EA0006D664 /* TagsPageView.m in Sources */,
 				65E950562196466200EBAE73 /* BUKAlbumTableViewCell.m in Sources */,
 				65BA731021A40A3200A4018D /* IZVMainCollectionViewCell.m in Sources */,

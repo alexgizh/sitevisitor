@@ -11,6 +11,7 @@
 #import "SitePhotoCell.h"
 #import "TagViewController.h"
 #import "AppDelegate.h"
+#import "APIClient.h"
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 {
@@ -27,6 +28,7 @@
     _sitePhotos = [NSMutableArray new];
     photosView.dataSource = self;
     photosView.delegate = self;
+    [self getUserToken];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -45,6 +47,21 @@
 // Upload Photos
 }
 
+- (void)getUserToken {
+    [[APIClient sharedClient] getWithPath:@"todos/1" params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        NSError *error = nil;
+        id json = [NSJSONSerialization JSONObjectWithData: responseObject options: NSJSONReadingMutableContainers error: &error];
+        if (json) {
+            NSLog(@"response = %@", json);
+        } else {
+            // Show error getting Token
+        }
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+    }];
+
+}
 #pragma mark - Collection view data source
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
