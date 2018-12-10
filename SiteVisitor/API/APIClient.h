@@ -2,7 +2,7 @@
 #import "AFNetworking.h"
 #import "AppDelegate.h"
 
-#define serverStaticURL @"https://jsonplaceholder.typicode.com/"
+#define serverStaticURL @"https://wup.extranet.netcetera.biz/"
 
 @class FDEvent, FDTemplates;
 @interface APIClient : AFHTTPSessionManager<UIAlertViewDelegate>{

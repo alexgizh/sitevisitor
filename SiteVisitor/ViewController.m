@@ -28,7 +28,7 @@
     _sitePhotos = [NSMutableArray new];
     photosView.dataSource = self;
     photosView.delegate = self;
-    [self getUserToken];
+//    [self getUserToken];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -44,11 +44,17 @@
 
 - (IBAction)uploadPhotos:(id)sender
 {
-// Upload Photos
+    SitePhoto *sitePhoto = [_sitePhotos objectAtIndex:0];
+    
+    [[APIClient sharedClient] uploadImage:sitePhoto.photo path:@"dimensions/feature/f2/ws/property-units/101-121" params:@{@"file" : @""} success:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        
+    }];
 }
 
 - (void)getUserToken {
-    [[APIClient sharedClient] getWithPath:@"todos/1" params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[APIClient sharedClient] getWithPath:@"dimensions/feature/f2/ws/property-units/121" params:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         NSError *error = nil;
         id json = [NSJSONSerialization JSONObjectWithData: responseObject options: NSJSONReadingMutableContainers error: &error];
         if (json) {

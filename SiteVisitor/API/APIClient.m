@@ -29,12 +29,13 @@
 //    self.responseSerializer.acceptableContentTypes = [self.responseSerializer.acceptableContentTypes setByAddingObject:@"text/html"];
 //    self.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/plain", @"text/html", @"application/json", @"application/x-www-form-urlencoded", nil];
     
-//[self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 //    [self.requestSerializer setValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
 
-//    [self.requestSerializer setValue:version forHTTPHeaderField:@"Client-version"];
-    
+    [self.requestSerializer setValue:@"Basic cnN0b2pjaGU6UmlzdGFraTE5Ng==" forHTTPHeaderField:@"Authorization"];
 
+    [self.requestSerializer setValue:@"eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZDEtdGVjaCIsImV4cCI6NDEwMjM1NDgwMCwianRpIjoiNiJ9.p9H3Va58fYb4cZfbNxJ_Kgbuh73Zrc4dewUsnxmT9uPKOTa_YmC5VOyIDaxQNWQIqto9XwAf4qX7cmXtfSIrog" forHTTPHeaderField:@"JwtAuthorization"];
+    
 
     return self;
 }
@@ -159,11 +160,11 @@
 {
     NSData *imageData = UIImageJPEGRepresentation(image, 0.1);
      NSLog(@"Size of Image(bytes):%lu",(unsigned long)[imageData length]);
-    [self setRequestCookie];
+//    [self setRequestCookie];
 
     [self POST:path  parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         for (id key in params)
-            [formData appendPartWithFileData:imageData name:key fileName:@"avatar.jpg" mimeType:@"image/jpeg"];
+            [formData appendPartWithFileData:imageData name:key fileName:@"picture.jpg" mimeType:@"image/jpeg"];
     }  progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"Reply JSON: %@", responseObject);
         success(responseObject);
@@ -284,6 +285,7 @@
 }
 
 - (void)setRequestCookie{
+    
     NSArray *allCookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookies];
     NSDictionary *headerFields = [NSHTTPCookie requestHeaderFieldsWithCookies:allCookies];
     for (NSString *key in headerFields) {
