@@ -81,7 +81,8 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)uploadPhotosWith:(NSString *)propertyUnitID {
+- (void)uploadPhotosWith:(NSString *)propertyUnitID
+{
     static int counter = 0;
     static int photosUploaded = 0;
     if (_sitePhotos.count > counter) {
@@ -105,14 +106,16 @@
     }
 }
 
-- (int)calculateStartIndex {
+- (int)calculateStartIndex
+{
     NSPredicate *isUploadedPredicate = [NSPredicate predicateWithFormat:@"isUploaded == 0"];
     notUploadedCounter = (int)[[_sitePhotos filteredArrayUsingPredicate:isUploadedPredicate] count];
 
     return notUploadedCounter;
 }
 
-- (void)reloadCollectionView {
+- (void)reloadCollectionView
+{
     dispatch_async(dispatch_get_main_queue(), ^{
         [self->photosView reloadData];
         self->hud.hidden = YES;

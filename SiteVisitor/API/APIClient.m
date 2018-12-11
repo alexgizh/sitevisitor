@@ -4,7 +4,8 @@
 
 @implementation APIClient
 
-+ (APIClient *)sharedClient{
++ (APIClient *)sharedClient
+{
     static APIClient *_sharedClient = nil;
     static dispatch_once_t oncePredicate;
     dispatch_once(&oncePredicate, ^{
@@ -15,7 +16,8 @@
     return _sharedClient;
 }
 
-- (instancetype) initWithBaseURL:(NSURL *)url{
+- (instancetype) initWithBaseURL:(NSURL *)url
+{
     self = [super initWithBaseURL:url];
     if (!self) {
         return nil;
@@ -32,14 +34,18 @@
     [self.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
 //    [self.requestSerializer setValue:@"text/html" forHTTPHeaderField:@"Content-Type"];
 
-    [self.requestSerializer setValue:@"Basic cnN0b2pjaGU6UmlzdGFraTE5Ng==" forHTTPHeaderField:@"Authorization"];
+    NSString *authStr = [NSString stringWithFormat:@"wup-sitevisitor:D5Ys#K?Z6fFdosNK(xaC"];
+    NSData *authData = [authStr dataUsingEncoding:NSUTF8StringEncoding];
+    NSString *authValue = [NSString stringWithFormat: @"Basic %@",[authData base64EncodedStringWithOptions:0]];
+    [self.requestSerializer setValue:authValue forHTTPHeaderField:@"Authorization"];
 
     [self.requestSerializer setValue:@"Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZDEtdGVjaCIsImV4cCI6NDEwMjM1NDgwMCwianRpIjoiNiJ9.p9H3Va58fYb4cZfbNxJ_Kgbuh73Zrc4dewUsnxmT9uPKOTa_YmC5VOyIDaxQNWQIqto9XwAf4qX7cmXtfSIrog" forHTTPHeaderField:@"JwtAuthorization"];
     
     return self;
 }
 
-- (BOOL)connected {
+- (BOOL)connected
+{
     return [AFNetworkReachabilityManager sharedManager].reachable;
 }
 

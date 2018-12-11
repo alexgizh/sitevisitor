@@ -81,8 +81,6 @@
 		65E9508E219646E400EBAE73 /* FastttZoom.m in Sources */ = {isa = PBXBuildFile; fileRef = 65E95085219646E300EBAE73 /* FastttZoom.m */; };
 		65FF0713219F107600E2861D /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF0712219F107600E2861D /* TagViewController.m */; };
 		6DEF42F221BE7092001AC61C /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEF42F021BE7091001AC61C /* APIClient.m */; };
-		6DEF42F721BEC113001AC61C /* UploadProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEF42F421BEC113001AC61C /* UploadProgressView.m */; };
-		6DEF42F821BEC113001AC61C /* UploadProgressView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DEF42F521BEC113001AC61C /* UploadProgressView.xib */; };
 		B0D98160BF99AEB8D5392A69 /* Pods_SiteVisitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC000B046C8B55CDD5D026 /* Pods_SiteVisitor.framework */; };
 /* End PBXBuildFile section */
 
@@ -216,9 +214,6 @@
 		6AAC000B046C8B55CDD5D026 /* Pods_SiteVisitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SiteVisitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6DEF42EE21BE7091001AC61C /* APIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIClient.h; sourceTree = "<group>"; };
 		6DEF42F021BE7091001AC61C /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
-		6DEF42F421BEC113001AC61C /* UploadProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UploadProgressView.m; sourceTree = "<group>"; };
-		6DEF42F521BEC113001AC61C /* UploadProgressView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UploadProgressView.xib; sourceTree = "<group>"; };
-		6DEF42F621BEC113001AC61C /* UploadProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UploadProgressView.h; sourceTree = "<group>"; };
 		9D9B74FECBFBD01EF151FBDD /* Pods-SiteVisitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiteVisitor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SiteVisitor/Pods-SiteVisitor.debug.xcconfig"; sourceTree = "<group>"; };
 		BFE56EE21EDEFDF963E8DDA0 /* Pods-SiteVisitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiteVisitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-SiteVisitor/Pods-SiteVisitor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -299,7 +294,6 @@
 		65BB5ED4219595760006D664 /* SiteVisitor */ = {
 			isa = PBXGroup;
 			children = (
-				6DEF42F321BEC113001AC61C /* View */,
 				6DEF42EC21BE7091001AC61C /* API */,
 				65BA72FE21A40A3200A4018D /* ImageZoomViewer */,
 				65E9500F2196466200EBAE73 /* BUKImagePickerController */,
@@ -499,16 +493,6 @@
 			path = API;
 			sourceTree = "<group>";
 		};
-		6DEF42F321BEC113001AC61C /* View */ = {
-			isa = PBXGroup;
-			children = (
-				6DEF42F621BEC113001AC61C /* UploadProgressView.h */,
-				6DEF42F421BEC113001AC61C /* UploadProgressView.m */,
-				6DEF42F521BEC113001AC61C /* UploadProgressView.xib */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		70A5AC1220639C6C9C999F91 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -602,7 +586,6 @@
 				65E950682196466200EBAE73 /* flash-button@3x.png in Resources */,
 				65BB5EDF219595770006D664 /* Assets.xcassets in Resources */,
 				65E950632196466200EBAE73 /* device-button@2x.png in Resources */,
-				6DEF42F821BEC113001AC61C /* UploadProgressView.xib in Resources */,
 				65E9506F2196466200EBAE73 /* take-picture-button.png in Resources */,
 				65E9506A2196466200EBAE73 /* flash-button@2x.png in Resources */,
 				65E9506B2196466200EBAE73 /* take-picture-button@3x.png in Resources */,
@@ -709,7 +692,6 @@
 				65BB5F162195C6460006D664 /* SitePhotoCell.m in Sources */,
 				65E9505A2196466200EBAE73 /* BUKNoAssetsPlaceholderView.m in Sources */,
 				65BA731321A40A3200A4018D /* ReplaceMe.m in Sources */,
-				6DEF42F721BEC113001AC61C /* UploadProgressView.m in Sources */,
 				65E9505B2196466200EBAE73 /* BUKCameraComfirmViewController.m in Sources */,
 				65BB5F132195C5C90006D664 /* SitePhoto.m in Sources */,
 				65E95086219646E400EBAE73 /* UIImage+FastttCamera.m in Sources */,
