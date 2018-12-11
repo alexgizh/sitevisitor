@@ -106,10 +106,9 @@
 }
 
 - (int)calculateStartIndex {
-    notUploadedCounter = 0;
-    for (SitePhoto *sitePhoto in _sitePhotos) {
-        notUploadedCounter += sitePhoto.isUploaded ? 0 : 1;
-    }
+    NSPredicate *isUploadedPredicate = [NSPredicate predicateWithFormat:@"isUploaded == 0"];
+    notUploadedCounter = (int)[[_sitePhotos filteredArrayUsingPredicate:isUploadedPredicate] count];
+
     return notUploadedCounter;
 }
 
