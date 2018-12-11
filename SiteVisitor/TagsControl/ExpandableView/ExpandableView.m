@@ -1,4 +1,5 @@
 #import "ExpandableView.h"
+#import "TagsControl.h"
 
 @implementation ExpandableView
 
@@ -28,7 +29,13 @@ BOOL dragging;
 {
     UITouch *touch = [[event allTouches] anyObject];
     CGPoint touchLocation = [touch locationInView:self];
+    UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+    
+    CGPoint translatedPoint = [self convertPoint:touchLocation toView:window];
     oldY = 0;
+    if (translatedPoint.y < UIScreen.mainScreen.bounds.size.height-TAGS_CONTROL_EXPANDED_HEIGHT) {
+        return;
+    }
     if (dragging) {
         [self.delegate expandableViewMoved:touchLocation.y-oldY];
     }

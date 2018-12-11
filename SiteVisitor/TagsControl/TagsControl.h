@@ -11,6 +11,7 @@
 #import "SitePhoto.h"
 
 NS_ASSUME_NONNULL_BEGIN
+#define TAGS_CONTROL_EXPANDED_HEIGHT 350
 
 @protocol TagsControlDelegate
 - (void)didSelectTag:(Tag *)tag;

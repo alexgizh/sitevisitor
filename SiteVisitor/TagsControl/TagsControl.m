@@ -5,7 +5,6 @@
 #import "ExpandableView.h"
 
 #define TAGS_CONTROL_HEIGHT 250
-#define TAGS_CONTROL_EXPANDED_HEIGHT 350
 
 @interface TagsControl ()
 <SwipeViewDataSource, SwipeViewDelegate, ExpandableViewDelegate, TagsPageViewDelegate>
