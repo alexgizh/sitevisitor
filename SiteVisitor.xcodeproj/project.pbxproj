@@ -82,6 +82,8 @@
 		65FF0713219F107600E2861D /* TagViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FF0712219F107600E2861D /* TagViewController.m */; };
 		6DEF42F221BE7092001AC61C /* APIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEF42F021BE7091001AC61C /* APIClient.m */; };
 		6DEF42FB21BFF534001AC61C /* Defaults.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEF42FA21BFF533001AC61C /* Defaults.m */; };
+		6DEF430121C000C3001AC61C /* PropertyUnitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEF430021C000C3001AC61C /* PropertyUnitViewController.m */; };
+		6DEF430421C00D7A001AC61C /* PropertyUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DEF430321C00D7A001AC61C /* PropertyUnit.m */; };
 		B0D98160BF99AEB8D5392A69 /* Pods_SiteVisitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6AAC000B046C8B55CDD5D026 /* Pods_SiteVisitor.framework */; };
 /* End PBXBuildFile section */
 
@@ -217,6 +219,10 @@
 		6DEF42F021BE7091001AC61C /* APIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIClient.m; sourceTree = "<group>"; };
 		6DEF42F921BFF533001AC61C /* Defaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defaults.h; sourceTree = "<group>"; };
 		6DEF42FA21BFF533001AC61C /* Defaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Defaults.m; sourceTree = "<group>"; };
+		6DEF42FF21C000C3001AC61C /* PropertyUnitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PropertyUnitViewController.h; sourceTree = "<group>"; };
+		6DEF430021C000C3001AC61C /* PropertyUnitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PropertyUnitViewController.m; sourceTree = "<group>"; };
+		6DEF430221C00D7A001AC61C /* PropertyUnit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PropertyUnit.h; sourceTree = "<group>"; };
+		6DEF430321C00D7A001AC61C /* PropertyUnit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PropertyUnit.m; sourceTree = "<group>"; };
 		9D9B74FECBFBD01EF151FBDD /* Pods-SiteVisitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiteVisitor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SiteVisitor/Pods-SiteVisitor.debug.xcconfig"; sourceTree = "<group>"; };
 		BFE56EE21EDEFDF963E8DDA0 /* Pods-SiteVisitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SiteVisitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-SiteVisitor/Pods-SiteVisitor.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -310,6 +316,8 @@
 				6570E38C21A6D34D00F8EADB /* CameraViewController.m */,
 				65FF0711219F107600E2861D /* TagViewController.h */,
 				65FF0712219F107600E2861D /* TagViewController.m */,
+				6DEF42FF21C000C3001AC61C /* PropertyUnitViewController.h */,
+				6DEF430021C000C3001AC61C /* PropertyUnitViewController.m */,
 				65BB5EDB219595760006D664 /* Main.storyboard */,
 				65BB5EDE219595770006D664 /* Assets.xcassets */,
 				65BB5EE0219595770006D664 /* LaunchScreen.storyboard */,
@@ -377,6 +385,8 @@
 				65BB5F182195D4970006D664 /* Tag.m */,
 				65BB5F112195C5C90006D664 /* SitePhoto.h */,
 				65BB5F122195C5C90006D664 /* SitePhoto.m */,
+				6DEF430221C00D7A001AC61C /* PropertyUnit.h */,
+				6DEF430321C00D7A001AC61C /* PropertyUnit.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -677,6 +687,7 @@
 				65E950512196466200EBAE73 /* BUKAssetsManager.m in Sources */,
 				65BB5F1C2195D9450006D664 /* Site.m in Sources */,
 				65E9504F2196466200EBAE73 /* BUKAlbumsViewController.m in Sources */,
+				6DEF430421C00D7A001AC61C /* PropertyUnit.m in Sources */,
 				65E9508E219646E400EBAE73 /* FastttZoom.m in Sources */,
 				65E9505E2196466200EBAE73 /* BUKCameraImageCollectionViewCell.m in Sources */,
 				65E9504D2196466200EBAE73 /* UIImage+BUKImagePickerController.m in Sources */,
@@ -695,6 +706,7 @@
 				65BA731021A40A3200A4018D /* IZVMainCollectionViewCell.m in Sources */,
 				65BB5F192195D4970006D664 /* Tag.m in Sources */,
 				65BB5EE5219595770006D664 /* main.m in Sources */,
+				6DEF430121C000C3001AC61C /* PropertyUnitViewController.m in Sources */,
 				65BB5F162195C6460006D664 /* SitePhotoCell.m in Sources */,
 				65E9505A2196466200EBAE73 /* BUKNoAssetsPlaceholderView.m in Sources */,
 				65BA731321A40A3200A4018D /* ReplaceMe.m in Sources */,

@@ -11,16 +11,12 @@
 #import "SitePhotoCell.h"
 #import "TagViewController.h"
 #import "AppDelegate.h"
-#import "APIClient.h"
-#import "MBProgressHUD.h"
-#import "Defaults.h"
+#import "PropertyUnitViewController.h"
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 {
     IBOutlet __weak UICollectionView *photosView;
     IBOutlet __weak UIImageView *backgroundImage;
-    int notUploadedCounter;
-    MBProgressHUD *hud;
 }
 @end
 
@@ -39,10 +35,6 @@
 {
     [super viewWillAppear:animated];
     [photosView reloadData];
-    hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    hud.mode = MBProgressHUDModeIndeterminate;
-    hud.label.text = @"Uploading ";
-    hud.hidden = YES;
 }
 
 - (IBAction)addPhotos:(id)sender
@@ -52,6 +44,18 @@
 
 - (IBAction)uploadPhotos:(id)sender
 {
+    if (_sitePhotos.count == 0) {
+        UIAlertController *alert= [UIAlertController alertControllerWithTitle:@"Please take some picutres" message:nil preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [alert addAction:ok];
+        
+        [self presentViewController:alert animated:YES completion:nil];
+        return;
+    }
     UIAlertController *alert= [UIAlertController
                                alertControllerWithTitle:@"Please enter Property unit ID"
                                message:nil
@@ -61,9 +65,7 @@
                                                handler:^(UIAlertAction * action){
                                                    UITextField *textField = alert.textFields[0];
                                                    dispatch_async(dispatch_get_main_queue(), ^{
-                                                       self->hud.hidden = NO;
-                                                       [self calculateStartIndex];
-                                                       [self uploadPhotosWith:textField.text];
+                                                       [self performSegueWithIdentifier:@"showPropertyUnit" sender:textField];
                                                    });
                                                }];
     UIAlertAction* cancel = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
@@ -82,48 +84,14 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
-- (void)uploadPhotosWith:(NSString *)propertyUnitID
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    static int counter = 0;
-    static int photosUploaded = 0;
-    if (_sitePhotos.count > counter) {
-        SitePhoto *sitePhoto = [_sitePhotos objectAtIndex:counter];
-        counter += 1;
-        if (!sitePhoto.isUploaded) {
-            int photoNameNumber = [[[Defaults standard] uploadCounter] intValue] + 1;
-            [[APIClient sharedClient] uploadImage:sitePhoto.photo path:[NSString stringWithFormat:@"dimensions/feature/f2/ws/property-units/%@/documents", propertyUnitID] params:@{[NSString stringWithFormat:@"IMG_%04d.jpg", photoNameNumber] : @"file"} success:^(id responseObject) {
-                [[Defaults standard] setUploadCounter:[NSNumber numberWithInt:photoNameNumber]];
-                photosUploaded += 1;
-                sitePhoto.isUploaded = YES;
-                [self uploadPhotosWith:propertyUnitID];
-                self->hud.label.text = [NSString stringWithFormat:@"Uploading %d of %d", photosUploaded, self->notUploadedCounter];
-            } failure:^(NSError *error) {
-                NSLog(@"Image Not uploaded %@", error.localizedDescription);
-            }];
-        } else {
-            [self uploadPhotosWith:propertyUnitID];
-        }
-    } else {
-        counter = 0;
-        photosUploaded = 0;
-        [self reloadCollectionView];
+    if ([[segue identifier] isEqualToString:@"showPropertyUnit"]) {
+        UITextField *textField = (UITextField *)sender;
+        PropertyUnitViewController *nextVC = (PropertyUnitViewController *)[segue destinationViewController];
+        [nextVC setSitePhotos:_sitePhotos];
+        [nextVC setPropertyUnitID:textField.text];
     }
-}
-
-- (int)calculateStartIndex
-{
-    NSPredicate *isUploadedPredicate = [NSPredicate predicateWithFormat:@"isUploaded == 0"];
-    notUploadedCounter = (int)[[_sitePhotos filteredArrayUsingPredicate:isUploadedPredicate] count];
-
-    return notUploadedCounter;
-}
-
-- (void)reloadCollectionView
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [self->photosView reloadData];
-        self->hud.hidden = YES;
-    });
 }
 
 #pragma mark - Collection view data source
