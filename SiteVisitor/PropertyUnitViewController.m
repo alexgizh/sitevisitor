@@ -12,6 +12,7 @@
     MBProgressHUD *hud;
     IBOutlet __weak UICollectionView *photosView;
     IBOutlet __weak UILabel *propertyUnitDetailsLabel;
+    IBOutlet __weak UIBarButtonItem *rightBarButtonItem;
     PropertyUnit *propertyUnit;
 }
 
@@ -36,12 +37,13 @@
 {
     [super viewWillAppear:animated];
     [photosView reloadData];
+    [self setUpRightBarButtonItem];
 }
 
 - (IBAction)uploadTapped:(id)sender
 {
     self->hud.hidden = NO;
-    [self calculateStartIndex];
+    [self calculateNotUploaded];
     [self uploadPhoto];
 }
 
@@ -81,6 +83,11 @@
     }];
 }
 
+- (void)setUpRightBarButtonItem
+{
+    [self calculateNotUploaded];
+    rightBarButtonItem.enabled = notUploadedCounter > 0;
+}
 #pragma mark - Upload Photos
 
 - (void)uploadPhoto
@@ -108,15 +115,14 @@
         counter = 0;
         photosUploaded = 0;
         [self reloadCollectionView];
+        [self setUpRightBarButtonItem];
     }
 }
 
-- (int)calculateStartIndex
+- (void)calculateNotUploaded
 {
     NSPredicate *isUploadedPredicate = [NSPredicate predicateWithFormat:@"isUploaded == 0"];
     notUploadedCounter = (int)[[_sitePhotos filteredArrayUsingPredicate:isUploadedPredicate] count];
-    
-    return notUploadedCounter;
 }
 
 - (void)reloadCollectionView

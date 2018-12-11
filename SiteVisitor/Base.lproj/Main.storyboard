@@ -271,6 +271,7 @@
                     <connections>
                         <outlet property="photosView" destination="Ff5-Tk-G0E" id="xZa-8r-iYY"/>
                         <outlet property="propertyUnitDetailsLabel" destination="dve-zk-p0A" id="X50-9I-EpL"/>
+                        <outlet property="rightBarButtonItem" destination="mkD-jr-b1d" id="boO-eQ-Tbb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vOr-pd-Nx7" userLabel="First Responder" sceneMemberID="firstResponder"/>
