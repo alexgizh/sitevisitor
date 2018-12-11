@@ -13,6 +13,7 @@
 #import "AppDelegate.h"
 #import "APIClient.h"
 #import "MBProgressHUD.h"
+#import "Defaults.h"
 
 @interface ViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 {
@@ -89,7 +90,9 @@
         SitePhoto *sitePhoto = [_sitePhotos objectAtIndex:counter];
         counter += 1;
         if (!sitePhoto.isUploaded) {
-            [[APIClient sharedClient] uploadImage:sitePhoto.photo path:[NSString stringWithFormat:@"dimensions/feature/f2/ws/property-units/%@/documents", propertyUnitID] params:@{@"file" : @""} success:^(id responseObject) {
+            int photoNameNumber = [[[Defaults standard] uploadCounter] intValue] + 1;
+            [[APIClient sharedClient] uploadImage:sitePhoto.photo path:[NSString stringWithFormat:@"dimensions/feature/f2/ws/property-units/%@/documents", propertyUnitID] params:@{[NSString stringWithFormat:@"IMG_%04d.jpg", photoNameNumber] : @"file"} success:^(id responseObject) {
+                [[Defaults standard] setUploadCounter:[NSNumber numberWithInt:photoNameNumber]];
                 photosUploaded += 1;
                 sitePhoto.isUploaded = YES;
                 [self uploadPhotosWith:propertyUnitID];
@@ -102,6 +105,7 @@
         }
     } else {
         counter = 0;
+        photosUploaded = 0;
         [self reloadCollectionView];
     }
 }

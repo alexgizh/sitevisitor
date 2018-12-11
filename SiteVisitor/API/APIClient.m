@@ -165,11 +165,9 @@
 {
     NSData *imageData = UIImageJPEGRepresentation(image, 0.1);
      NSLog(@"Size of Image(bytes):%lu",(unsigned long)[imageData length]);
-//    [self setRequestCookie];
-
     [self POST:path  parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        for (id key in params)
-            [formData appendPartWithFileData:imageData name:key fileName:@"picture.jpg" mimeType:@"image/jpeg"];
+        for (id name in params)
+            [formData appendPartWithFileData:imageData name:@"file" fileName:name mimeType:@"image/jpeg"];
     }  progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"Reply JSON: %@", responseObject);
         success(responseObject);
