@@ -44,69 +44,101 @@
     UIColor *darkBlue = [UIColor colorWithRed:58/255.0 green:48/255.0 blue:83/255.0 alpha:1.0];
     UIColor *lightBlue = [UIColor colorWithRed:90/255.0 green:158/255.0 blue:213/255.0 alpha:1.0];
     
-    Tag *tag1 = [Tag new];
-    tag1.name = @"Shower";
-    tag1.color = darkBlue;
+    // Outdoor
     
-    Tag *tag2 = [Tag new];
-    tag2.name = @"Castle";
-    tag2.color = darkBlue;
+    Tag *construction = [Tag new];
+    construction.name = @"Construction";
+    construction.color = darkBlue;
     
-    Tag *tag3 = [Tag new];
-    tag3.name = @"Barcode";
-    tag3.color = darkBlue;
+    Tag *facade = [Tag new];
+    facade.name = @"Facade";
+    facade.color = darkBlue;
+
+    Tag *roof = [Tag new];
+    roof.name = @"Roof";
+    roof.color = darkBlue;
+
+    Tag *outside = [Tag new];
+    outside.name = @"Outside space";
+    outside.color = darkBlue;
+
+    TagCategory *outdoorCategory = [TagCategory new];
+    outdoorCategory.name = @"Outdoor";
+    outdoorCategory.tags = @[construction, facade, roof, outside];
     
-    Tag *tag4 = [Tag new];
-    tag4.name = @"Coffee";
-    tag4.color = darkBlue;
+    // Indoor
     
-    Tag *tag5 = [Tag new];
-    tag5.name = @"Castle";
-    tag5.color = darkBlue;
+    Tag *bathroom = [Tag new];
+    bathroom.name = @"Bathroom";
+    bathroom.color = darkBlue;
     
-    Tag *tag6 = [Tag new];
-    tag6.name = @"Garden";
-    tag6.color = darkBlue;
+    Tag *kitchen = [Tag new];
+    kitchen.name = @"Kitchen";
+    kitchen.color = darkBlue;
     
-    Tag *tag7 = [Tag new];
-    tag7.name = @"House";
-    tag7.color = lightBlue;
+    Tag *finishing = [Tag new];
+    finishing.name = @"Finishing";
+    finishing.color = darkBlue;
     
-    Tag *tag8 = [Tag new];
-    tag8.name = @"Car";
-    tag8.color = lightBlue;
+    Tag *misc = [Tag new];
+    misc.name = @"Misc";
+    misc.color = darkBlue;
+
+    TagCategory *indoorCategory = [TagCategory new];
+    indoorCategory.name = @"Indoor";
+    indoorCategory.tags = @[bathroom, kitchen, finishing, misc];
+
+    // Installations
     
-    Tag *tag9 = [Tag new];
-    tag9.name = @"Building";
-    tag9.color = lightBlue;
+    Tag *electricity = [Tag new];
+    electricity.name = @"Electricity";
+    electricity.color = darkBlue;
     
-    Tag *tag10 = [Tag new];
-    tag10.name = @"Grid";
-    tag10.color = lightBlue;
+    Tag *heating = [Tag new];
+    heating.name = @"Heating";
+    heating.color = darkBlue;
     
-    TagCategory *staticCategory = [TagCategory new];
-    staticCategory.tags = @[tag7,tag8,tag9,tag10];
+    Tag *sanitary = [Tag new];
+    sanitary.name = @"Sanitary line";
+    sanitary.color = darkBlue;
     
-    TagCategory *innen = [TagCategory new];
-    innen.name = @"Innen";
-    innen.tags = @[tag1,tag2,tag3,tag4];
+    Tag *ventilation = [Tag new];
+    ventilation.name = @"Ventilation";
+    ventilation.color = darkBlue;
+
+    TagCategory *installationsCategory = [TagCategory new];
+    installationsCategory.name = @"Technik";
+    installationsCategory.tags = @[electricity, heating, sanitary, ventilation];
     
-    TagCategory *technik = [TagCategory new];
-    technik.name = @"Technik";
-    technik.tags = innen.tags;
+    // Shared
     
-    TagCategory *aussen = [TagCategory new];
-    aussen.name = @"Aussen";
-    aussen.tags = innen.tags;
+    Tag *window = [Tag new];
+    window.name = @"Window";
+    window.color = lightBlue;
     
-    tagCategories = @[staticCategory,innen,technik,aussen];
+    Tag *stairs = [Tag new];
+    stairs.name = @"Stairs";
+    stairs.color = lightBlue;
+    
+    Tag *transport = [Tag new];
+    transport.name = @"Transport";
+    transport.color = lightBlue;
+    
+    Tag *parking = [Tag new];
+    parking.name = @"Parking";
+    parking.color = lightBlue;
+    
+    TagCategory *sharedCategory = [TagCategory new];
+    sharedCategory.tags = @[window, stairs, transport, parking];
+    
+    tagCategories = @[sharedCategory, indoorCategory, installationsCategory, outdoorCategory];
     
     Building *building1 = [Building new];
-    building1.name = @"Hauptgebäude";
+    building1.name = @"Main building";
     building1.tagCategories = tagCategories;
     
     Building *building2 = [Building new];
-    building2.name = @"Gebäude 2";
+    building2.name = @"Building Nr.2";
     building2.tagCategories = tagCategories;
     
     Building *building3 = [Building new];
