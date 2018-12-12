@@ -28,7 +28,6 @@
     _sitePhotos = [NSMutableArray new];
     photosView.dataSource = self;
     photosView.delegate = self;
-//    [self getUserToken];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -88,7 +87,8 @@
 {
     if ([[segue identifier] isEqualToString:@"showPropertyUnit"]) {
         UITextField *textField = (UITextField *)sender;
-        PropertyUnitViewController *nextVC = (PropertyUnitViewController *)[segue destinationViewController];
+        UINavigationController *navigationController = (UINavigationController *)[segue destinationViewController];
+        PropertyUnitViewController *nextVC = (PropertyUnitViewController *)[navigationController topViewController];
         [nextVC setSitePhotos:_sitePhotos];
         [nextVC setPropertyUnitID:textField.text];
     }

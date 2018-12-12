@@ -8,7 +8,7 @@
 
 @interface PropertyUnitViewController () <UICollectionViewDataSource, UICollectionViewDelegate>
 {
-    int notUploadedCounter;
+    NSInteger notUploadedCounter;
     MBProgressHUD *hud;
     IBOutlet __weak UICollectionView *photosView;
     IBOutlet __weak UILabel *propertyUnitDetailsLabel;
@@ -42,14 +42,14 @@
 
 - (IBAction)uploadTapped:(id)sender
 {
-    self->hud.hidden = NO;
+    hud.hidden = NO;
     [self calculateNotUploaded];
     [self uploadPhoto];
 }
 
 - (IBAction)cancelTapped:(id)sender
 {
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)getPropertyUnitInfo
@@ -73,7 +73,7 @@
         UIAlertController *alert= [UIAlertController alertControllerWithTitle:@"Check your property unit ID" message:nil preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * action) {
-            [self.navigationController popToRootViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
         }];
         
         [alert addAction:ok];
@@ -92,19 +92,19 @@
 
 - (void)uploadPhoto
 {
-    static int counter = 0;
-    static int photosUploaded = 0;
+    static NSInteger counter = 0;
+    static NSInteger photosUploaded = 0;
     if (_sitePhotos.count > counter) {
         SitePhoto *sitePhoto = [_sitePhotos objectAtIndex:counter];
         counter += 1;
         if (!sitePhoto.isUploaded) {
-            int photoNameNumber = [[[Defaults standard] uploadCounter] intValue] + 1;
-            [[APIClient sharedClient] uploadImage:sitePhoto.photo path:[NSString stringWithFormat:@"dimensions/feature/f2/ws/property-units/%@/documents", propertyUnitID] params:@{[NSString stringWithFormat:@"IMG_%04d.jpg", photoNameNumber] : @"file"} success:^(id responseObject) {
-                [[Defaults standard] setUploadCounter:[NSNumber numberWithInt:photoNameNumber]];
+            NSInteger photoNameNumber = [[[Defaults standard] uploadCounter] intValue] + 1;
+            [[APIClient sharedClient] uploadImage:sitePhoto.photo path:[NSString stringWithFormat:@"dimensions/feature/f2/ws/property-units/%@/documents", propertyUnitID] params:@{[NSString stringWithFormat:@"IMG_%04zd.jpg", photoNameNumber] : @"file"} success:^(id responseObject) {
+                [[Defaults standard] setUploadCounter:[NSNumber numberWithInteger:photoNameNumber]];
                 photosUploaded += 1;
                 sitePhoto.isUploaded = YES;
                 [self uploadPhoto];
-                self->hud.label.text = [NSString stringWithFormat:@"Uploading %d of %d", photosUploaded, self->notUploadedCounter];
+                self->hud.label.text = [NSString stringWithFormat:@"Uploading %zd of %zd", photosUploaded, self->notUploadedCounter];
             } failure:^(NSError *error) {
                 NSLog(@"Image Not uploaded %@", error.localizedDescription);
             }];
