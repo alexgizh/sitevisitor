@@ -58,12 +58,12 @@
                                 <action selector="hide" destination="iN0-l3-epB" eventType="touchUpInside" id="AoL-IN-MrS"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQq-se-Hre">
+                        <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQq-se-Hre">
                             <rect key="frame" x="10" y="20" width="355" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="21" id="WH3-2m-N2s"/>
                             </constraints>
-                            <state key="normal" title="Hauptgebäude v">
+                            <state key="normal" title="Main building">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
