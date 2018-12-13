@@ -121,7 +121,8 @@
         [self addPhotos:nil];
         return;
     }
-    [backgroundImage setImage:[(SitePhoto *)[_sitePhotos objectAtIndex:indexPath.row] photo]];
+
+    [backgroundImage setImage:[backgroundImage.image isEqual:[(SitePhoto *)[_sitePhotos objectAtIndex:indexPath.row] photo]] ? nil : [(SitePhoto *)[_sitePhotos objectAtIndex:indexPath.row] photo]];
 }
 
 @end
