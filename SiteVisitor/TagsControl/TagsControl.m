@@ -88,7 +88,9 @@
 - (void)didSelectTag:(Tag *)tag
 {
     selectedTag = tag;
-    [(UICollectionView *)[tagsPageViews objectAtIndex:pageControl.currentPage] reloadData];
+    for (int i = 0; i < tagsPageViews.count; i++) {
+        [(UICollectionView *)[tagsPageViews objectAtIndex:i] reloadData];
+    }
     [staticTagsPage reloadData];
     [self.delegate didSelectTag:tag];
 }
