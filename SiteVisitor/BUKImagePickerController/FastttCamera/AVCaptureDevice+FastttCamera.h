@@ -46,7 +46,7 @@
  *
  *  @return YES if flash is available for the device, NO if not.
  */
-+ (BOOL)isFlashAvailableForCameraDevice:(FastttCameraDevice)cameraDevice;
+//+ (BOOL)isFlashAvailableForCameraDevice:(FastttCameraDevice)cameraDevice;
 
 /**
  *  Checks whether torch is available for the given FastttCameraDevice.
@@ -102,5 +102,8 @@
  *  @return YES if the FastttCameraTorchMode is supported by this AVCaptureDevice, NO if not.
  */
 - (BOOL)setCameraTorchMode:(FastttCameraTorchMode)cameraTorchMode;
+
+//TODO: document
++ (AVCaptureDevicePosition)avPositionForDevice:(FastttCameraDevice)cameraDevice;
 
 @end

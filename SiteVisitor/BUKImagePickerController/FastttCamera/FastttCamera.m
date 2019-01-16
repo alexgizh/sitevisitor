@@ -23,7 +23,7 @@
 @property (nonatomic, strong) FastttZoom *fastZoom;
 @property (nonatomic, strong) AVCaptureSession *session;
 @property (nonatomic, strong) AVCaptureVideoPreviewLayer *previewLayer;
-@property (nonatomic, strong) AVCapturePhotoOutput *stillImageOutput;
+@property (nonatomic, strong) AVCapturePhotoOutput *photoOutput;
 @property (nonatomic, assign) BOOL deviceAuthorized;
 @property (nonatomic, assign) BOOL isCapturingImage;
 
@@ -254,22 +254,6 @@
     return [[self _currentCameraDevice] zoomToScale:scale];
 }
 
-- (BOOL)isFlashAvailableForCurrentDevice
-{
-    AVCaptureDevice *device = [self _currentCameraDevice];
-    
-    if ([device isFlashModeSupported:AVCaptureFlashModeOn]) {
-        return YES;
-    }
-    
-    return NO;
-}
-
-+ (BOOL)isFlashAvailableForCameraDevice:(FastttCameraDevice)cameraDevice
-{
-    return [AVCaptureDevice isFlashAvailableForCameraDevice:cameraDevice];
-}
-
 - (BOOL)isTorchAvailableForCurrentDevice
 {
     AVCaptureDevice *device = [self _currentCameraDevice];
@@ -315,12 +299,30 @@
     [self _resetZoom];
 }
 
+- (BOOL)isFlashAvailableForCurrentDevice
+{
+    if ([[_photoOutput supportedFlashModes] containsObject:@(AVCaptureFlashModeAuto)]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
++ (BOOL)isFlashAvailableForCameraDevice:(FastttCameraDevice)cameraDevice
+{
+    AVCaptureDevice *device = [AVCaptureDevice cameraDevice:cameraDevice];
+    if ([device hasFlash]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 - (void)setCameraFlashMode:(FastttCameraFlashMode)cameraFlashMode
 {
-    AVCaptureDevice *device = [self _currentCameraDevice];
-    
-    if ([AVCaptureDevice isFlashAvailableForCameraDevice:self.cameraDevice]) {
+    if ([FastttCamera isFlashAvailableForCameraDevice:_cameraDevice]) {
         _cameraFlashMode = cameraFlashMode;
+        AVCaptureDevice *device = [AVCaptureDevice cameraDevice:_cameraDevice];
         [device setCameraFlashMode:cameraFlashMode];
         return;
     }
@@ -449,10 +451,9 @@
                 [self setCameraFlashMode:self.cameraFlashMode];
 #endif
                 
-                self.stillImageOutput = [AVCapturePhotoOutput new];
-//                _stillImageOutput.outputSettings = outputSettings;
+                self.photoOutput = [AVCapturePhotoOutput new];
                 
-                [self.session addOutput:self.stillImageOutput];
+                [self.session addOutput:self.photoOutput];
                 
                 self.deviceOrientation = [IFTTTDeviceOrientation new];
                 
@@ -485,8 +486,8 @@
         [self.session removeInput:input];
     }
     
-    [self.session removeOutput:_stillImageOutput];
-    _stillImageOutput = nil;
+    [self.session removeOutput:_photoOutput];
+    _photoOutput = nil;
     
     [self _removePreviewLayer];
     
@@ -523,14 +524,14 @@
 #else    
     UIDeviceOrientation previewOrientation = [self _currentPreviewDeviceOrientation];
 
-    AVCaptureConnection *c = [self.stillImageOutput connectionWithMediaType:AVMediaTypeVideo];
+    AVCaptureConnection *c = [self.photoOutput connectionWithMediaType:AVMediaTypeVideo];
     if (c.active) {
         AVCapturePhotoSettings *_avSettings = [AVCapturePhotoSettings photoSettings];
-        [self->_stillImageOutput capturePhotoWithSettings:_avSettings delegate:self];
+        [self->_photoOutput capturePhotoWithSettings:_avSettings delegate:self];
         
     }
 
-//    [_stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection
+//    [_photoOutput captureStillImageAsynchronouslyFromConnection:videoConnection
 //                                                   completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error)
 //     {
 //         if (!imageDataSampleBuffer) {
@@ -738,7 +739,7 @@
 {
     AVCaptureConnection *videoConnection = nil;
     
-    for (AVCaptureConnection *connection in [_stillImageOutput connections]) {
+    for (AVCaptureConnection *connection in [_photoOutput connections]) {
         for (AVCaptureInputPort *port in [connection inputPorts]) {
             if ([[port mediaType] isEqual:AVMediaTypeVideo]) {
                 videoConnection = connection;

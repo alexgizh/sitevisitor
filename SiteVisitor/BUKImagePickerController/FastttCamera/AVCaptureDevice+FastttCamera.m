@@ -26,16 +26,6 @@
     return NO;
 }
 
-+ (BOOL)isFlashAvailableForCameraDevice:(FastttCameraDevice)cameraDevice
-{
-    AVCaptureDevice *device = [self cameraDevice:cameraDevice];
-    if ([device hasFlash]) {
-        return YES;
-    }
-    
-    return NO;
-}
-
 + (BOOL)isTorchAvailableForCameraDevice:(FastttCameraDevice)cameraDevice
 {
     AVCaptureDevice *device = [self cameraDevice:cameraDevice];
@@ -46,22 +36,6 @@
     return NO;
 }
 
-+ (AVCaptureDevice *)cameraDevice:(FastttCameraDevice)cameraDevice
-{
-    AVCaptureDeviceDiscoverySession *captureDeviceDiscoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera]
-                                                                                                                            mediaType:AVMediaTypeVideo
-                                                                                                                             position:AVCaptureDevicePositionUnspecified];
-    NSArray *devices = [captureDeviceDiscoverySession devices];
-    
-    for (AVCaptureDevice *device in devices) {
-        if ([device position] == [self _avPositionForDevice:cameraDevice]) {
-            return device;
-        }
-    }
-    
-    return nil;
-}
-
 + (AVCaptureDevicePosition)positionForCameraDevice:(FastttCameraDevice)cameraDevice
 {
     switch (cameraDevice) {
@@ -70,6 +44,22 @@
         default:
             return AVCaptureDevicePositionBack;
     }
+}
+
++ (AVCaptureDevice *)cameraDevice:(FastttCameraDevice)cameraDevice
+{
+    AVCaptureDeviceDiscoverySession *captureDeviceDiscoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera]
+                                                                                                                            mediaType:AVMediaTypeVideo
+                                                                                                                             position:AVCaptureDevicePositionUnspecified];
+    NSArray *devices = [captureDeviceDiscoverySession devices];
+    
+    for (AVCaptureDevice *device in devices) {
+        if ([device position] == [AVCaptureDevice avPositionForDevice:cameraDevice]) {
+            return device;
+        }
+    }
+    
+    return nil;
 }
 
 - (BOOL)setCameraFlashMode:(FastttCameraFlashMode)cameraFlashMode
@@ -162,7 +152,7 @@
 
 #pragma mark - Internal Methods
 
-+ (AVCaptureDevicePosition)_avPositionForDevice:(FastttCameraDevice)cameraDevice
++ (AVCaptureDevicePosition)avPositionForDevice:(FastttCameraDevice)cameraDevice
 {
     switch (cameraDevice) {
         case FastttCameraDeviceFront:
