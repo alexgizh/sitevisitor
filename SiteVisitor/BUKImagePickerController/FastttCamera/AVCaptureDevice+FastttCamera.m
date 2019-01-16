@@ -29,7 +29,7 @@
 + (BOOL)isFlashAvailableForCameraDevice:(FastttCameraDevice)cameraDevice
 {
     AVCaptureDevice *device = [self cameraDevice:cameraDevice];
-    if ([device isFlashModeSupported:AVCaptureFlashModeOn]) {
+    if ([device hasFlash]) {
         return YES;
     }
     
@@ -48,7 +48,10 @@
 
 + (AVCaptureDevice *)cameraDevice:(FastttCameraDevice)cameraDevice
 {
-    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    AVCaptureDeviceDiscoverySession *captureDeviceDiscoverySession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera]
+                                                                                                                            mediaType:AVMediaTypeVideo
+                                                                                                                             position:AVCaptureDevicePositionUnspecified];
+    NSArray *devices = [captureDeviceDiscoverySession devices];
     
     for (AVCaptureDevice *device in devices) {
         if ([device position] == [self _avPositionForDevice:cameraDevice]) {
